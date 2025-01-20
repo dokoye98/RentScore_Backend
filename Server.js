@@ -7,11 +7,13 @@ const cors = require('cors')
 require('dotenv').config()
 const userRoutes = require('./Routes/user')
 const reviewRoutes = require('./Routes/review')
+const propertyRoutes = require('./Routes/property')
 
 app.use(bodyParser.json())
 app.use(cors())
 app.use('/user', userRoutes)
 app.use('/review', reviewRoutes)
+app.use('/property', propertyRoutes)
 
 app.get('/',async(req,res)=>{
   res.status(200).send('Hello world')
