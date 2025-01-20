@@ -5,10 +5,13 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 require('dotenv').config()
+const userRoutes = require('./Routes/user')
+const reviewRoutes = require('./Routes/review')
 
 app.use(bodyParser.json())
 app.use(cors())
-
+app.use('/user', userRoutes)
+app.use('/review', reviewRoutes)
 
 app.get('/',async(req,res)=>{
   res.status(200).send('Hello world')
