@@ -9,10 +9,10 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
     try {
-        const { name, email, password, userType } = req.body;
+        const { firstname,lastname, email, password, userType } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = new User({ name, email, password: hashedPassword, userType });
+        const user = new User({ firstname,lastname, email, password: hashedPassword, userType });
         await user.save();
 
         res.status(201).json({ message: 'User registered successfully' });
@@ -24,6 +24,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
+        console.log("login ATTEMPT")
         const { email, password } = req.body;
         const user = await User.findOne({ email });
 
